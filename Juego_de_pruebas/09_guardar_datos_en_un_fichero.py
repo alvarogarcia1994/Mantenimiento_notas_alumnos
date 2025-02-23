@@ -18,8 +18,8 @@ def escribir(fichero):
             file.write("-" * 47 + "\n")
         print(f"Datos guardados en el archivo {fichero}")
     #Capturamos la excepción en caso de que no se pueda encontrar el fichero.
-    except FileNotFoundError:
-        print(f"No se pudo encontrar el archivo {fichero}")
+    except Exception as e:
+        print(f"No se pudo completar la operación de guardado: {e}")
 
-file_name = 'Juego_de_pruebas/prueba.txt'
+file_name = 'prueba.txt'
 escribir(file_name)

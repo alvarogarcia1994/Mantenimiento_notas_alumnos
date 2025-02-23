@@ -1,6 +1,6 @@
 #Proyecto de programación. Mantenimiento de notas de alumnos
 #Importaciones
-import os;
+import time
 from colorama import Fore
 
 #Declaramos cinco arrays donde guardaremos la siguiente información (Alumno, Nota_EV1, Nota_EV2, Nota_EV3 y Media aritmética)
@@ -12,6 +12,7 @@ Media = []
 
 # Funciones a desarrollar
 def menu_principal():
+    print("------------------------------");
     print("Qué operación deseas realizar?");
     print("------------------------------");
     print("a) Insertar tres notas a partir de un nuevo alumno");
@@ -23,6 +24,11 @@ def menu_principal():
     print("l) Carga la información guardada")
     print("?) Ayuda");
     print("x) Salir");
+
+
+#Función que valida la opción introducida por teclado
+def valida_opcion():
+    return str(input("Elige una opción: "))
 
 #Función que valida que la calificación introducida tiene un entero entre 0 y 10
 def validar_calificacion():
@@ -48,6 +54,8 @@ def insertar_alumno_y_tres_notas(Lista_Alumnos, Primera_evaluacion, Segunda_eval
     Segunda_evaluacion.append(nota_ev2);
     Tercera_evaluacion.append(nota_ev3);
     Media.append(media);
+    print(f"Alumno/a {alumno} añadido/a con éxito")
+    time.sleep(5)
 
 #Función que muestra la tabla de alumnos con sus notas y la media artimética de las mismas
 def mostrar_notas():
@@ -61,6 +69,8 @@ def mostrar_notas():
                 print(f"{alumno:<12} {primera:>2} {segunda:>7} {tercera:>7} {Fore.RED}{media:>15.2f}{Fore.RESET}")
             else:
                 print(f"{alumno:<12} {primera:>2} {segunda:>7} {tercera:>7} {Fore.BLUE}{media:>15.2f}{Fore.RESET}")
+    time.sleep(5)
+
 
 #Función que se encargará de aumentar la calificación las notas inferiores a 5.
 def aprobar(Primera_evaluacion, Segunda_evaluacion, Tercera_evaluacion, Media):
@@ -68,7 +78,10 @@ def aprobar(Primera_evaluacion, Segunda_evaluacion, Tercera_evaluacion, Media):
     Segunda_evaluacion[:] = [5 if nota < 5 else nota for nota in Segunda_evaluacion]
     Tercera_evaluacion[:] = [5 if nota < 5 else nota for nota in Tercera_evaluacion]
     Media[:] = [5 if calificacion < 5 else calificacion for calificacion in Media]
+    print("Notas actualizadas")
+    time.sleep(5)
     return Primera_evaluacion, Segunda_evaluacion, Tercera_evaluacion, Media
+
 
 #Función que modificará el nombre del primer alumno con dicho nombre, en caso contrario mostramos el mensaje de ERROR!
 def cambiar_nombre(Alumnos):
@@ -82,6 +95,8 @@ def cambiar_nombre(Alumnos):
             raise ValueError(f"{nombre_antes} no figura en la lista")
     except ValueError as e:
         print(e)
+    print("Nombre cambiado con éxito")
+    time.sleep(5)
 
 #Función que a partir de un alumno en la lista modificaremos una de las notas (1ra, 2da o 3ra evaluación) y su media. En caso de que el número de la evaluación sea inferior a 1 o bien superior a 3 mostramos un mensaje de ERROR y también aplicamos esta praxis en caso de que el alumno introducido por teclado sea inexistente.
 def modificar_calificacion(Lista_Alumnos, Primera_evaluacion, Segunda_evaluacion, Tercera_evaluacion, Media):
@@ -100,7 +115,8 @@ def modificar_calificacion(Lista_Alumnos, Primera_evaluacion, Segunda_evaluacion
         else:
             raise ValueError(f"{nombre} no figura en la lista") #Aplicamos la misma práctica, en caso de que el alumno no figure en la lista de alumnos
     except ValueError as e:
-        print(e) 
+        print(e)
+    time.sleep(5)
 
 #Función que nos peritirá volcar la información existente en un fichero
 def guardar_datos_fichero(fichero):
@@ -114,9 +130,12 @@ def guardar_datos_fichero(fichero):
                 file.write(f"{alumno:<12} {primera:>2} {segunda:>7} {tercera:>7} {media:>15.2f}" + "\n")
             file.write("-" * 47 + "\n")
         print(f"Datos guardados en el archivo {fichero}")
-    except FileNotFoundError:
-        print(f"No se pudo encontrar el archivo {fichero}")
+    except Exception as e:
+        print(f"Error al guardar: {e}")
+    finally:
+        time.sleep(5)
 
+#Función que nos permitirá cargar la información previa a partir de un fichero
 def cargar_datos(file):
     datos = []
     try:
@@ -139,7 +158,9 @@ def cargar_datos(file):
         print(f"Ocurrió un error: {e}")
     else:
         print(f"Carga de datos ok!!")
+        time.sleep(5)
         return datos
+
 
 #Función que ofrece un resumen de que hace cada una de las operaciones
 def ayuda():
@@ -152,14 +173,14 @@ def ayuda():
     print("l) Carga la información previa")
     print("?) Muestra ayuda de cada comando");
     print("x) Sale del programa");
+    time.sleep(5)
 
-menu_principal()
 
-#Definimos como un string la opción.
-opcion = str;
 
-#Mientras no pulsemos la x
-while(opcion != 'x'):
+while True:
+    menu_principal()
+    opcion = valida_opcion()
+
     if(opcion == 'a'):
         insertar_alumno_y_tres_notas(Lista_Alumnos, Primera_evaluacion, Segunda_evaluacion, Tercera_evaluacion, Media)
 
@@ -187,6 +208,9 @@ while(opcion != 'x'):
         ayuda()
 
     elif(opcion == 'x'):
-        os.exit()
-        
-    opcion = str(input("Elige una opción: "));
+        print("Hasta luego...")
+        exit()
+    
+    else:
+        print("Opción no válida, por favor selecciona una opción válida")
+        time.sleep(3)

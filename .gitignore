@@ -1,0 +1,2 @@
+#Ignore all .txt files in the root directory
+*.txt

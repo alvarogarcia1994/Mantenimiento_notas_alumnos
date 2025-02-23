@@ -32,5 +32,5 @@ def cargar_datos(file):
             print(f"{Lista_Alumnos[i]:<12} {Primera_evaluacion[i]:>2} {Segunda_evaluacion[i]:>7} {Tercera_evaluacion[i]:>7} {Media[i]:>15.2f}")
         return datos
 
-file = 'Juego_de_pruebas/prueba.txt'
+file = 'prueba.txt'
 respuesta = cargar_datos(file)

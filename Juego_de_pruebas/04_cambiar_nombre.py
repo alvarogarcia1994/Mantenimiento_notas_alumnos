@@ -8,8 +8,9 @@ def cambiar_nombre(Alumnos):
         if nombre_antes in Alumnos:
             nombre_despues = input("Nombre nuevo: ")
             index = Alumnos.index(nombre_antes)
-            Alumnos[index] = nombre_despues 
-        raise ValueError(f"{nombre_antes} no figura en la lista")
+            Alumnos[index] = nombre_despues
+        else:
+            raise ValueError(f"{nombre_antes} no figura en la lista")
     except ValueError as e:
         print(e)
     return Alumnos
