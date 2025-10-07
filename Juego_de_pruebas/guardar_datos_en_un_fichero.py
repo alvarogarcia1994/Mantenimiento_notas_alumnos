@@ -8,7 +8,7 @@ Media = [5.00, 4.00, 5.00, 6.00]
 #Funcionalidad que se encargará de salvaguardar la información introducida en los arrays, 
 def escribir(fichero):
     try:
-        with open(fichero, 'w+') as file:
+        with open(fichero, 'w', encoding="utf-8") as file:
             file.write("Notas de los alumnos" + "\n")
             file.write("-" * 47 + "\n")
             file.write(f"{'Alumno':<13}{'1ra':<8}{'2da':<8}{'3ra':<8}{'Media':>10}" + "\n")

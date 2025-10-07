@@ -1,9 +1,9 @@
 # Arrays vacíos
 
-Lista_Alumnos = [];
-Primera_evaluacion = [];
-Segunda_evaluacion = [];
-Tercera_evaluacion = [];
+Lista_Alumnos = []
+Primera_evaluacion = []
+Segunda_evaluacion = []
+Tercera_evaluacion = []
 
 def nuevo_alumno():
     alumno = input("Nombre del alumno: ")

@@ -9,7 +9,13 @@ Media = [5.00, 4.00, 5.00, 6.33]
 def mostrar_notas():
     print(f"{'Alumno':<13}{'1ra':<8}{'2da':<8}{'3ra':<8}{'Media':>10}")
     print("-" * 47)
-    for alumno, primera, segunda, tercera, media in zip(Lista_Alumnos, Primera_evaluacion, Segunda_evaluacion, Tercera_evaluacion, Media):
+    for alumno, primera, segunda, tercera, media in zip(
+        Lista_Alumnos, 
+        Primera_evaluacion, 
+        Segunda_evaluacion, 
+        Tercera_evaluacion, 
+        Media
+    ):
         print(f"{alumno:<12} {primera:>2} {segunda:>7} {tercera:>7} {media:>15.2f}")
 
 

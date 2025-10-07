@@ -1,5 +1,5 @@
 #Array
-Alumnos = ["Carla", "Juan", "Pepe", "Francisco", "Carla"];
+Alumnos = ["Carla", "Juan", "Pepe", "Francisco", "Carla"]
 
 #Función que se encarga de comprobar la existencia del nombre que figure en el array y cambiar la primera coincidencia por el nombre nuevo
 def cambiar_nombre(Alumnos):
